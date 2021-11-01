@@ -65,9 +65,10 @@
             }
             let available = Object.keys(classData).filter(item => !Object.keys(disabled).includes(item))
             let copy = JSON.parse(JSON.stringify(disabled))
-            let len = available.length
+            len = available.length
+            c_available = JSON.parse(JSON.stringify(available))
             for (let i=0;i<len;i++){
-                copy[choice()] = classData[i]
+                copy[choice()] = classData[c_available[i]]
             }
             renderClass(copy,disabled)
         }
