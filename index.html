@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        
+    </body>
+    <script>
+        let container = document.getElementsByTagName("body")[0]
+        let classData = {
+            0: "Andrea",
+            1: "Vanessa",
+            2: "Tamara",
+            3: "Michaela",
+            4: "Ela",
+            5: "Sára",
+            6: "Ingrid",
+            7: "Mária",
+            8: "Patrícia",
+            9: "Natália B.",
+            10: "Bibiana G.",
+            11: "Bibiana S.",
+            12: "Empty",
+            13: "Ondrej",
+            14: "Martin",
+            15: "Matúš",
+            16: "Mário",
+            17: "Jakub",
+            18: "Filip",
+            19: "Hugo",
+            20: "Natália O.",
+            21: "Nicole"
+        }
+        let disabled = {}
+        function renderClass(classData,disable = {}){
+            let buffer = ""
+            disabled = {}
+            for (let i=0;i<=10;i+=2){
+                buffer += `<tr><td><button id="${i}" onclick="toggleButton(this)">${classData[i]}</button></td><td><button id="${i+1}" onclick="toggleButton(this)">${classData[i+1]}</button></td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>${(typeof classData[i+2+10]=="undefined")?"&nbsp;":`<button id="${i+2+10}" onclick="toggleButton(this)">${classData[i+2+10]}</button>`}</td><td>${(typeof classData[i+3+10]=="undefined")?"&nbsp;":`<button id="${i+3+10}" onclick="toggleButton(this)">${classData[i+3+10]}</button>`}</td></tr>`
+            }
+            container.innerHTML = `<table>${buffer}</table><br><button onclick="randomize()">Randomize</button><button onclick="reset()">Reset</button>`
+            if (Object.keys(disable).length < 0){
+                return
+            }
+            Object.keys(disable).forEach(key=>{
+                document.getElementById(key).style.background = "#ff0000"
+            })
+        }
+        function toggleButton(target){
+            target.style.background = (target.style.background=="")?"#ff0000":""
+        }
+        function randomize(){
+            const choice = ()=>{
+                let random = Math.floor(Math.random() * available.length)
+                return available.splice(random, 1)[0]
+            }
+            for (let i=0;i<=21;i++){
+                if (document.getElementById(i).style.background == "rgb(255, 0, 0)"){
+                    disabled[i] = document.getElementById(i).innerText
+                }
+            }
+            let available = Object.keys(classData).filter(item => !Object.keys(disabled).includes(item))
+            let copy = JSON.parse(JSON.stringify(disabled))
+            let len = available.length
+            for (let i=0;i<len;i++){
+                copy[choice()] = classData[i]
+            }
+            renderClass(copy,disabled)
+        }
+        function reset(){
+            renderClass(classData)
+        }
+        renderClass(classData)
+
+
+
+
+
+    </script>
+</html>
