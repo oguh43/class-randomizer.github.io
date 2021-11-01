@@ -70,9 +70,34 @@
             for (let i=0;i<len;i++){
                 copy[choice()] = classData[c_available[i]]
             }
+            classData = copy
             renderClass(copy,disabled)
         }
         function reset(){
+            classData = {
+            0: "Andrea",
+            1: "Vanessa",
+            2: "Tamara",
+            3: "Michaela",
+            4: "Ela",
+            5: "Sára",
+            6: "Ingrid",
+            7: "Mária",
+            8: "Patrícia",
+            9: "Natália B.",
+            10: "Bibiana G.",
+            11: "Bibiana S.",
+            12: "Empty",
+            13: "Ondrej",
+            14: "Martin",
+            15: "Matúš",
+            16: "Mário",
+            17: "Jakub",
+            18: "Filip",
+            19: "Hugo",
+            20: "Natália O.",
+            21: "Nicole"
+        }
             renderClass(classData)
         }
         renderClass(classData)
